@@ -1,0 +1,111 @@
+<html>
+
+<head>
+<script src="libs/qimessaging/1.0/qimessaging.js"></script>
+<script src="libs/qimessaging/1.0/jquery.min.js"></script>
+</head>
+
+<body>
+<script>
+
+var self = this;
+
+
+function connect(){
+	console.log("connect push");
+	// 入力されたpepperのIPアドレスを取得
+	var pepperIp = $("#pepperIP").val();
+
+	// 接続が成功したら、各種プロキシを作成して代入しておく
+    var setupIns_ = function(){
+    	self.qims.service("ALTextToSpeech").done(function(ins){
+    		self.alTextToSpeech = ins;
+        });
+        self.qims.service("ALMotion").done(function(ins){
+        	self.alMotion = ins;
+        });
+    }
+
+	// pepperへの接続を開始する
+	self.qims = new QiSession(pepperIp);
+	self.qims.socket()
+		// 接続成功したら
+		.on('connect', function ()
+			{
+   	 		self.qims.service("ALTextToSpeech")
+   	 			.done(function (tts) 
+   	 			{
+   	 	        	tts.say("せつぞく、ぺっぱー");
+   	 	       });
+   	 	       		// 接続成功したら各種セットアップを行う
+     	       		setupIns_();
+     	       })
+     	// 接続失敗したら
+        .on('disconnect', function () {
+              //self.nowState("切断");
+});
+}
+
+function hello(){
+	console.log("hello");
+	this.alTextToSpeech.say("はろー");
+	
+}
+
+function say(){
+	console.log("say");
+	var value = $("#sayText").val();
+	this.alTextToSpeech.say(value);
+}
+
+function move(to){
+	console.log("move to");
+	switch (to){
+		case 0:
+			self.alMotion.moveTo(0, 0, 1).fail(function(err){console.log(err);});
+			break;
+		
+		case 1:
+			self.alMotion.moveTo(0, 0, -1).fail(function(err){console.log(err);});
+			break;
+
+		case 2:
+			self.alMotion.moveTo(0.3, 0, 0).fail(function(err){console.log(err);});
+			break;
+		
+		case 3:
+			self.alMotion.moveTo(-0.3, 0, 0).fail(function(err){console.log(err);});
+			break;
+			
+	}
+}
+
+
+</script>
+
+<p>pepperと同じLANにつながっていることを確認して下さい</p>
+
+<div>
+<input type="text" id="pepperIP" value="192.168.0.4" />
+<button onclick="connect()">接続ボタン</button>
+
+</div>
+
+<div>
+<button onclick="hello()">Hello</button>
+</div>
+
+<div>
+<input type="text" id="sayText" />
+<button onclick="say()">送信</button>
+</div>
+
+<button onclick="move(0)">←回転</button>
+<button onclick="move(1)">→回転</button><br>
+<button onclick="move(2)">前進</button>
+<button onclick="move(3)">後退</button>
+
+
+</body>
+
+</html>
