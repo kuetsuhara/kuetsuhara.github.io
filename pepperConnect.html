@@ -1,15 +1,15 @@
 <html>
 
 <head>
+<meta charset="utf-8">
+
 <script src="libs/qimessaging/1.0/qimessaging.js"></script>
 <script src="libs/qimessaging/1.0/jquery.min.js"></script>
-</head>
 
-<body>
+
 <script>
 
 var self = this;
-
 
 function connect(){
 	console.log("connect push");
@@ -24,6 +24,11 @@ function connect(){
         self.qims.service("ALMotion").done(function(ins){
         	self.alMotion = ins;
         });
+        self.qims.service("ALBehaviorManager").done(function(ins){
+        	self.alBehavior = ins;
+        });
+
+
     }
 
 	// pepperへの接続を開始する
@@ -39,6 +44,7 @@ function connect(){
    	 	       });
    	 	       		// 接続成功したら各種セットアップを行う
      	       		setupIns_();
+
      	       })
      	// 接続失敗したら
         .on('disconnect', function () {
@@ -59,31 +65,63 @@ function say(){
 }
 
 function move(to){
-	console.log("move to");
-	switch (to){
-		case 0:
-			self.alMotion.moveTo(0, 0, 1).fail(function(err){console.log(err);});
-			break;
-		
-		case 1:
-			self.alMotion.moveTo(0, 0, -1).fail(function(err){console.log(err);});
-			break;
-
-		case 2:
-			self.alMotion.moveTo(0.3, 0, 0).fail(function(err){console.log(err);});
-			break;
-		
-		case 3:
-			self.alMotion.moveTo(-0.3, 0, 0).fail(function(err){console.log(err);});
-			break;
+	
+	if (self.alMotion){
+		console.log("move to");
+		switch (to){
+			case 0:
+				self.alMotion.moveTo(0, 0, 0.3).fail(function(err){console.log(err);});
+				break;
 			
+			case 1:
+				self.alMotion.moveTo(0, 0, -0.3).fail(function(err){console.log(err);});
+				break;
+
+			case 2:
+				self.alMotion.moveTo(0.1, 0, 0).fail(function(err){console.log(err);});
+				break;
+			
+			case 3:
+				self.alMotion.moveTo(-0.1, 0, 0).fail(function(err){console.log(err);});
+				break;
+			case 4:
+				self.alMotion.moveTo(0, 0, 0).fail(function(err){console.log(err);});
+				break;
+				
+		}
+
 	}
+
 }
 
+function action(num){
+	switch (num){
+		case 0:
+			self.alBehavior.stopAllBehaviors();
+			break;
+		case 1:
+			self.alBehavior.runBehavior("animation-5ffd19/HighTouch");
+			break;
+		case 2:
+			self.alBehavior.runBehavior("pepper_self_introduction_waist_sample/.");
+			break;
+		case 3:
+			self.alBehavior.runBehavior("pepper_tongue_twister_sample/.");
+			break;
+	}
+	
+
+
+}
 
 </script>
 
-<p>pepperと同じLANにつながっていることを確認して下さい</p>
+
+</head>
+
+<body>
+
+LANにつながっていることを確認して下さい</p>
 
 <div>
 <input type="text" id="pepperIP" value="192.168.0.4" />
@@ -100,10 +138,22 @@ function move(to){
 <button onclick="say()">送信</button>
 </div>
 
+<div>
 <button onclick="move(0)">←回転</button>
 <button onclick="move(1)">→回転</button><br>
 <button onclick="move(2)">前進</button>
 <button onclick="move(3)">後退</button>
+</div>
+
+<div>
+<button onclick="action(0)">ストップ</button>
+<button onclick="action(1)">ハイタッチ</button>
+<button onclick="action(2)">自己紹介</button>
+<button onclick="action(3)">早口言葉</button>
+
+</div>
+
+
 
 
 </body>
