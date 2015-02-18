@@ -5,7 +5,8 @@
 
 <script src="libs/qimessaging/1.0/qimessaging.js"></script>
 <script src="libs/qimessaging/1.0/jquery.min.js"></script>
-
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/starter-template.css" rel="stylesheet">
 
 <script>
 
@@ -40,7 +41,7 @@ function connect(){
    	 		self.qims.service("ALTextToSpeech")
    	 			.done(function (tts) 
    	 			{
-   	 	        	tts.say("せつぞく、ぺっぱー");
+   	 	        	tts.say("せつぞく、成功しました");
    	 	       });
    	 	       		// 接続成功したら各種セットアップを行う
      	       		setupIns_();
@@ -121,39 +122,81 @@ function action(num){
 
 <body>
 
-LANにつながっていることを確認して下さい</p>
 
-<div>
-<input type="text" id="pepperIP" value="192.168.0.4" />
-<button onclick="connect()">接続ボタン</button>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">pepper conrtoller</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
 
+
+
+<div class="container">
+  <div class="starter-template">
+    <h1>pepperを動かせます</h1>
+    <p class="lead">pepperと同じLANにいるときのみ動きます</p>
+  </div>
+</div><!-- /.container -->
+
+
+<div class="container">
+<section class = "container">
+	<h3>接続</h3>
+	<div class = "row">
+		<div class="col-xs-4">pepper's IP</div>
+		<div class="col-xs-6"><input type="text" id="pepperIP" value="192.168.0.4" /></div>
+		<div class="col-xs-2"><button onclick="connect()" class="btn btn-primary">接続</button></div>
+	</div>
+	<h3>喋らせる</h3>
+
+	<div class = "row">
+		<div class="col-xs-12" >
+			<button onclick="hello()" class="btn btn-success">Hello</button>
+		</div>
+	</div>
+
+	<div class = "row">
+		<div class="col-xs-4">TextMessage</div>
+		<div class="col-xs-6" ><input type="text" id="sayText" /></div>
+		<div class="col-xs-2" ><button onclick="say()" class="btn btn-primary">送信</button></div>
+	</div>
+	<h3>動かす</h3>
+	<div class = "row">
+		<div class="col-xs-3" ><button onclick="move(0)" class="btn btn-warning">←回転</button></div>
+		<div class="col-xs-3" ><button onclick="move(1)" class="btn btn-warning">→回転</button></div>
+		<div class="col-xs-3" ><button onclick="move(2)" class="btn btn-info">前進</button></div>
+		<div class="col-xs-3" ><button onclick="move(3)" class="btn btn-info">後退</button></div>
+	</div>
+	<h3>動かす</h3>
+	<div class = "row">
+		<div class="col-xs-3"><button onclick="action(0)" class="btn btn-success">ストップ</button></div>
+		<div class="col-xs-3"><button onclick="action(1)" class="btn btn-success">ハイタッチ</button></div>
+		<div class="col-xs-3"><button onclick="action(2)" class="btn btn-success">自己紹介</button></div>
+		<div class="col-xs-3"><button onclick="action(3)" class="btn btn-success">早口言葉</button></div>
+	</div>
+	
+</section>
 </div>
 
-<div>
-<button onclick="hello()">Hello</button>
-</div>
-
-<div>
-<input type="text" id="sayText" />
-<button onclick="say()">送信</button>
-</div>
-
-<div>
-<button onclick="move(0)">←回転</button>
-<button onclick="move(1)">→回転</button><br>
-<button onclick="move(2)">前進</button>
-<button onclick="move(3)">後退</button>
-</div>
-
-<div>
-<button onclick="action(0)">ストップ</button>
-<button onclick="action(1)">ハイタッチ</button>
-<button onclick="action(2)">自己紹介</button>
-<button onclick="action(3)">早口言葉</button>
-
-</div>
-
-
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
 
 
 </body>
