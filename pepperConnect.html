@@ -37,7 +37,12 @@ function connect(){
     	self.qims.service("ALAutonomousLife").done(function(ins){
     		self.alAutonomousLife = ins;
         });
-
+        self.qims.service("ALAudioDevice").done(function(ins){
+            self.alAudioDevice = ins;
+            self.alAudioDevice.getOutputVolume().done(function(val){
+		    self.audioVolume(val);
+		    });
+        });
 
 
     }
@@ -63,6 +68,13 @@ function connect(){
 });
 }
 
+
+function audioVolume(val){
+	console.log(val);
+	// あとからページに表示させる
+}
+
+// 動作確認用Hello
 function hello(){
 	console.log("hello");
 	this.alAnimatedSpeech.say("はろー");
@@ -109,9 +121,7 @@ function move(to){
 				break;
 				
 		}
-
 	}
-
 }
 
 // ビヘイビアアクション
@@ -227,11 +237,21 @@ function sleepSwitch(bl){
 <div class="container">
 <section class = "container">
 	<h3>接続</h3>
+	<span class="connected">未接続</span><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 	<div class = "row">
 		<div class="col-xs-12"><label>pepper's IP</label></div>
 		<div class="col-xs-9"><input type="text" class="form-control" id="pepperIP" value="192.168.3.13" /></div>
 		<div class="col-xs-2"><button onclick="connect()" class="btn btn-primary">接続</button></div>
 	</div>
+
+	<h3>音量</h3>
+	<div class = "row">
+		<div class="col-xs-12"><label>今の音量</label></div>
+		<div class="col-xs-9"><input type="text" class="form-control" id="pepperIP" value="waiting" /></div>
+		<div class="col-xs-2"><button onclick="connect()" class="btn btn-primary">音量変更</button></div>
+	</div>
+
+
 	<h3>喋らせる</h3>
 
 	<div class = "row">
