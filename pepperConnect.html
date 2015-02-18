@@ -172,9 +172,9 @@ function action(num){
 <section class = "container">
 	<h3>接続</h3>
 	<div class = "row">
-		<div class="col-xs-3"><label>pepper's IP</label></div>
-		<div class="col-xs-7"><input type="text" class="form-control" id="pepperIP" value="192.168.0.4" /></div>
-		<div class="col-xs-2"><button onclick="connect()" class="btn btn-primary">接続</button></div>
+		<div class="col-xs-12"><label>pepper's IP</label></div>
+		<div class="col-xs-12"><input type="text" class="form-control" id="pepperIP" value="192.168.0.4" /></div>
+		<div class="col-xs-12"><button onclick="connect()" class="btn btn-primary">接続</button></div>
 	</div>
 	<h3>喋らせる</h3>
 
@@ -185,15 +185,15 @@ function action(num){
 	</div>
 
 	<div class = "row">
-		<div class="col-xs-3"><label>TextMessage</label></div>
-		<div class="col-xs-7" ><input type="text" class="form-control" id="sayText" /></div>
-		<div class="col-xs-2" ><button onclick="say()" class="btn btn-primary">送信</button></div>
+		<div class="col-xs-12"><label>TextMessage</label></div>
+		<div class="col-xs-12" ><input type="text" class="form-control" id="sayText" /></div>
+		<div class="col-xs-12" ><button onclick="say()" class="btn btn-primary">送信</button></div>
 	</div>
 
 	<div class = "row">
-		<div class="col-xs-3"><label>AnimatedMessage</label></div>
-		<div class="col-xs-7" ><input type="text" class="form-control" id="animatedSayText" /></div>
-		<div class="col-xs-2" ><button onclick="animatedSay()" class="btn btn-primary">送信</button></div>
+		<div class="col-xs-12"><label>AnimatedMessage</label></div>
+		<div class="col-xs-12" ><input type="text" class="form-control" id="animatedSayText" /></div>
+		<div class="col-xs-12" ><button onclick="animatedSay()" class="btn btn-primary">送信</button></div>
 		
 	</div>
 	<div class = "row">
@@ -202,17 +202,17 @@ function action(num){
 
 	<h3>動かす</h3>
 	<div class = "row">
-		<div class="col-xs-3" ><button onclick="move(0)" class="btn btn-warning">←回転</button></div>
-		<div class="col-xs-3" ><button onclick="move(1)" class="btn btn-warning">→回転</button></div>
-		<div class="col-xs-3" ><button onclick="move(2)" class="btn btn-info">前進</button></div>
-		<div class="col-xs-3" ><button onclick="move(3)" class="btn btn-info">後退</button></div>
+		<div class="col-xs-6" ><button onclick="move(0)" class="btn btn-warning">←回転</button></div>
+		<div class="col-xs-6" ><button onclick="move(1)" class="btn btn-warning">→回転</button></div>
+		<div class="col-xs-6" ><button onclick="move(2)" class="btn btn-info">前進</button></div>
+		<div class="col-xs-6" ><button onclick="move(3)" class="btn btn-info">後退</button></div>
 	</div>
 	<h3>動かす</h3>
 	<div class = "row">
-		<div class="col-xs-3"><button onclick="action(0)" class="btn btn-success">ストップ</button></div>
-		<div class="col-xs-3"><button onclick="action(1)" class="btn btn-success">ハイタッチ</button></div>
-		<div class="col-xs-3"><button onclick="action(2)" class="btn btn-success">自己紹介</button></div>
-		<div class="col-xs-3"><button onclick="action(3)" class="btn btn-success">早口言葉</button></div>
+		<div class="col-xs-6"><button onclick="action(0)" class="btn btn-success">ストップ</button></div>
+		<div class="col-xs-6"><button onclick="action(1)" class="btn btn-success">ハイタッチ</button></div>
+		<div class="col-xs-6"><button onclick="action(2)" class="btn btn-success">自己紹介</button></div>
+		<div class="col-xs-6"><button onclick="action(3)" class="btn btn-success">早口言葉</button></div>
 	</div>
 	
 </section>
