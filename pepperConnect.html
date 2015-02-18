@@ -34,6 +34,10 @@ function connect(){
         self.qims.service("ALBehaviorManager").done(function(ins){
         	self.alBehavior = ins;
         });
+    	self.qims.service("ALAutonomousLife").done(function(ins){
+    		self.alAutonomousLife = ins;
+        });
+
 
 
     }
@@ -123,9 +127,36 @@ function action(num){
 			self.alBehavior.runBehavior("pepper_tongue_twister_sample/.");
 			break;
 	}
-	
+}
 
+function autonomousSwitch(bl){
+	var status;
+	if (bl) 
+	{
+		console.log("ON");
+		self.alAutonomousLife.getState().done(function(val){console.log(val)});
+		self.alAutonomousLife.setState("solitary");
+		
+	}else
+	{
+		console.log("OFF");
+		self.alAutonomousLife.getState().done(function(val){console.log(val)});
+		self.alAutonomousLife.setState("disabled");
+	}
+}
 
+function sleepSwitch(bl){
+	var status;
+	if (bl) 
+	{
+		console.log("ON");
+		self.alMotion.wakeUp();
+		
+	}else
+	{
+		console.log("OFF");
+		self.alMotion.rest();
+	}
 }
 
 </script>
@@ -176,8 +207,8 @@ function action(num){
 	<h3>接続</h3>
 	<div class = "row">
 		<div class="col-xs-12"><label>pepper's IP</label></div>
-		<div class="col-xs-12"><input type="text" class="form-control" id="pepperIP" value="192.168.0.4" /></div>
-		<div class="col-xs-12"><button onclick="connect()" class="btn btn-primary">接続</button></div>
+		<div class="col-xs-10"><input type="text" class="form-control" id="pepperIP" value="192.168.3.13" /></div>
+		<div class="col-xs-2"><button onclick="connect()" class="btn btn-primary">接続</button></div>
 	</div>
 	<h3>喋らせる</h3>
 
@@ -189,14 +220,14 @@ function action(num){
 
 	<div class = "row">
 		<div class="col-xs-12"><label>TextMessage</label></div>
-		<div class="col-xs-12" ><input type="text" class="form-control" id="sayText" /></div>
-		<div class="col-xs-12" ><button onclick="say()" class="btn btn-primary">送信</button></div>
+		<div class="col-xs-10" ><input type="text" class="form-control" id="sayText" /></div>
+		<div class="col-xs-2" ><button onclick="say()" class="btn btn-primary">送信</button></div>
 	</div>
 
 	<div class = "row">
 		<div class="col-xs-12"><label>AnimatedMessage</label></div>
-		<div class="col-xs-12" ><input type="text" class="form-control" id="animatedSayText" /></div>
-		<div class="col-xs-12" ><button onclick="animatedSay()" class="btn btn-primary">送信</button></div>
+		<div class="col-xs-10" ><input type="text" class="form-control" id="animatedSayText" /></div>
+		<div class="col-xs-2" ><button onclick="animatedSay()" class="btn btn-primary">送信</button></div>
 		
 	</div>
 	<div class = "row">
@@ -210,13 +241,26 @@ function action(num){
 		<div class="col-xs-6" ><button onclick="move(2)" class="btn btn-info">前進</button></div>
 		<div class="col-xs-6" ><button onclick="move(3)" class="btn btn-info">後退</button></div>
 	</div>
-	<h3>動かす</h3>
+	<h3>ビヘイビア</h3>
 	<div class = "row">
 		<div class="col-xs-6"><button onclick="action(0)" class="btn btn-success">ストップ</button></div>
 		<div class="col-xs-6"><button onclick="action(1)" class="btn btn-success">ハイタッチ</button></div>
 		<div class="col-xs-6"><button onclick="action(2)" class="btn btn-success">自己紹介</button></div>
 		<div class="col-xs-6"><button onclick="action(3)" class="btn btn-success">早口言葉</button></div>
 	</div>
+
+	<h3>オートノマスライフ</h3>
+	<div class = "row">
+		<div class="col-xs-6" ><button onclick="autonomousSwitch(true)" class="btn btn-info">autonomous/ON</button></div>
+		<div class="col-xs-6" ><button onclick="autonomousSwitch(false)" class="btn btn-danger">autonomous/OFF</button></div>
+	</div>
+	<h3>Wake up/Sleep</h3>
+	<div class = "row">
+		<div class="col-xs-6" ><button onclick="sleepSwitch(true)" class="btn btn-info">Wake up</button></div>
+		<div class="col-xs-6" ><button onclick="sleepSwitch(false)" class="btn btn-danger">Sleep</button></div>
+	</div>
+
+
 	
 </section>
 </div>
