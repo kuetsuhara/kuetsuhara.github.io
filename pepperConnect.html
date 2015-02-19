@@ -16,7 +16,6 @@
 var self = this;
 
 function connect(){
-	console.log("connect push");
 	// 入力されたpepperのIPアドレスを取得
 	var pepperIp = $("#pepperIP").val();
 
@@ -40,7 +39,7 @@ function connect(){
         self.qims.service("ALAudioDevice").done(function(ins){
             self.alAudioDevice = ins;
             self.alAudioDevice.getOutputVolume().done(function(val){
-		    self.audioVolume(val);
+		    self.showAudioVolume(val);
 		    });
         });
 
@@ -56,10 +55,17 @@ function connect(){
    	 		self.qims.service("ALTextToSpeech")
    	 			.done(function (tts) 
    	 			{
-   	 	        	tts.say("せつぞく、成功しました");
+   	 	        	tts.say("接続、成功しました");
    	 	       });
    	 	       		// 接続成功したら各種セットアップを行う
      	       		setupIns_();
+
+     	       		// 接続成功表示切り替え
+     	       		$(".connectedState > .connected > .connectedText").text("接続成功");
+     	       		$(".connectedState > .connected > .glyphicon").removeClass("glyphicon-remove");
+     	       		$(".connectedState > .connected > .glyphicon").addClass("glyphicon-signal");
+     	       		$(".connectedState > .connected").css("color","Blue");
+     	       		
 
      	       })
      	// 接続失敗したら
@@ -69,10 +75,21 @@ function connect(){
 }
 
 
-function audioVolume(val){
+function showAudioVolume(val){
 	console.log(val);
 	// あとからページに表示させる
+	$("#pepperVolume").val(val);
 }
+
+function changeAudioVolume(){
+	var volume = $("#pepperVolume").val();
+	volume = Number(volume);
+	console.log(Number(volume));
+	self.alAudioDevice.setOutputVolume(volume);
+	self.hello();
+
+}
+
 
 // 動作確認用Hello
 function hello(){
@@ -237,18 +254,20 @@ function sleepSwitch(bl){
 <div class="container">
 <section class = "container">
 	<h3>接続</h3>
-	<span class="connected">未接続</span><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+	<div class = "row connectedState">
+		<div class="connected col-xs-9" style="color:red"><span class="connectedText">未接続</span><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+	</div>
 	<div class = "row">
 		<div class="col-xs-12"><label>pepper's IP</label></div>
-		<div class="col-xs-9"><input type="text" class="form-control" id="pepperIP" value="192.168.3.13" /></div>
+		<div class="col-xs-9"><input type="text" class="form-control" id="pepperIP" value="192.168.0.4" /></div>
 		<div class="col-xs-2"><button onclick="connect()" class="btn btn-primary">接続</button></div>
 	</div>
 
 	<h3>音量</h3>
 	<div class = "row">
 		<div class="col-xs-12"><label>今の音量</label></div>
-		<div class="col-xs-9"><input type="text" class="form-control" id="pepperIP" value="waiting" /></div>
-		<div class="col-xs-2"><button onclick="connect()" class="btn btn-primary">音量変更</button></div>
+		<div class="col-xs-9"><input type="text" class="form-control" id="pepperVolume" value="waiting..." /></div>
+		<div class="col-xs-2"><button onclick="changeAudioVolume()" class="btn btn-primary">音量変更</button></div>
 	</div>
 
 
