@@ -27,7 +27,15 @@ function connect(){
 		    self.showAudioVolume(val);
 		    });
         });
+        self.qims.service("ALMemory").done(function(ins){
+    		self.alMemory = ins;
 
+    		// メモリ監視
+    		qimessagingMemorySubscribe();
+        });
+
+        
+        
 
     }
 
@@ -191,4 +199,25 @@ function sleepSwitch(bl){
 		console.log("OFF");
 		self.alMotion.rest();
 	}
+}
+
+
+function qimessagingMemoryEvent(){
+	console.log("push!");
+	self.alMemory.raiseEvent("PepperQiMessaging/Hey", "1");
+}
+
+function qimessagingMemorySubscribe(){
+	console.log("subscriber!");
+	self.alMemory.subscriber("PepperQiMessaging/Reco").done(function(subscriber) 
+		{
+            subscriber.signal.connect(toTabletHandler);
+        }
+    );
+}
+
+
+function toTabletHandler(value) {
+        console.log("PepperQiMessaging/Recoイベント発生: " + value);
+        $(".memory").val(value);
 }
