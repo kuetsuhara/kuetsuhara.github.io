@@ -219,5 +219,5 @@ function qimessagingMemorySubscribe(){
 
 function toTabletHandler(value) {
         console.log("PepperQiMessaging/Recoイベント発生: " + value);
-        $(".memory").val(value);
+        $(".memory").text(value);
 }
