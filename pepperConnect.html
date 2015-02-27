@@ -151,8 +151,6 @@
 	</div>
 
   <h3>QRCode</h3>
-  <p>Render in table</p>
-  <div id="qrcodeTable"></div>
   <p>Render in canvas</p>
   <div id="qrcodeCanvas"></div>
 
@@ -169,10 +167,6 @@
 <script src="js/bootstrap.min.js"></script>
 
 <script>
-	jQuery('#qrcodeTable').qrcode({
-		render	: "table",
-		text	: "http://192.168.0.4:50007"
-	});
 	jQuery('#qrcodeCanvas').qrcode({
 		text	: "http://192.168.0.4:50007"
 	});
