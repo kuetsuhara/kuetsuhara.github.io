@@ -4,7 +4,7 @@ var self = this;
 function qrCreate(){
 
 	var ipAddress = $('#socketServerIP').val();
-	var portNumber = $('#socketServerPort').val()
+	var portNumber = $('#socketServerPort').val();
 
 	var jsonText = 	'{"ip":"' +
 									ipAddress +
@@ -12,6 +12,7 @@ function qrCreate(){
 									portNumber +
 									'}'
 	console.log(jsonText)
+	$('#qrcodeCanvas').empty();
 
 
 	$('#qrcodeCanvas').qrcode({
