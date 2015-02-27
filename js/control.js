@@ -14,7 +14,6 @@ function qrCreate(){
 	console.log(jsonText)
 
 
-
 	$('#qrcodeCanvas').qrcode({
 		text	: jsonText
 	});
