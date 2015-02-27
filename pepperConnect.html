@@ -9,7 +9,14 @@
 
 <script src="libs/qimessaging/1.0/qimessaging.js"></script>
 <script src="libs/qimessaging/1.0/jquery.min.js"></script>
+<script src="js/jquery.qrcode.min.js"></script>
 <script src="js/control.js"></script>
+
+<script type="text/javascript">
+  $('#qrcode').qrcode("192.168.0.4");
+</script>
+
+
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/starter-template.css" rel="stylesheet">
 
@@ -18,7 +25,7 @@
 
 <body>
 
-
+<div id="qrcode"></div>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -92,7 +99,7 @@
 		<div class="col-xs-12"><label>AnimatedMessage</label></div>
 		<div class="col-xs-9" ><input type="text" class="form-control" id="animatedSayText" /></div>
 		<div class="col-xs-2" ><button onclick="animatedSay()" class="btn btn-primary">送信</button></div>
-		
+
 	</div>
 	<div class = "row">
 		<div class="col-xs-12"><span id="helpBlock" class="help-block">Hint:　\vct=50~150\ で声の高さ　\pau=0~\ で待つ</span></div>
@@ -120,6 +127,12 @@
 		<div class="col-xs-4"><button onclick="action(7)" class="btn btn-success">＼(^o^)／</button></div>
 	</div>
 
+  <h3>ALMemory Event</h3>
+	<div class = "row">
+		<div class="col-xs-12" ><button onclick="qimessagingMemoryEvent()" class="btn btn-info">PepperQiMessaging/Hey</button></div>
+		<div class="col-xs-12" >pepper : <span class="memory"></span></div>
+	</div>
+
 	<h3>オートノマスライフ</h3>
 	<div class = "row">
 		<div class="col-xs-6" ><button onclick="autonomousSwitch(true)" class="btn btn-info">autonomous/ON</button></div>
@@ -130,14 +143,9 @@
 		<div class="col-xs-6" ><button onclick="sleepSwitch(true)" class="btn btn-info">Wake up</button></div>
 		<div class="col-xs-6" ><button onclick="sleepSwitch(false)" class="btn btn-danger">Sleep</button></div>
 	</div>
-	<h3>ALMemory Event</h3>
-	<div class = "row">
-		<div class="col-xs-6" ><button onclick="qimessagingMemoryEvent()" class="btn btn-info">PepperQiMessaging/Hey</button></div>
-		<div class="col-xs-6" >pepper : <span class="memory"></span></div>
-	</div>
 
 
-	
+
 </section>
 </div>
 

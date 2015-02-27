@@ -1,5 +1,8 @@
 var self = this;
 
+
+
+
 function connect(){
 	// 入力されたpepperのIPアドレスを取得
 	var pepperIp = $("#pepperIP").val();
@@ -34,8 +37,8 @@ function connect(){
     		qimessagingMemorySubscribe();
         });
 
-        
-        
+
+
 
     }
 
@@ -46,7 +49,7 @@ function connect(){
 		.on('connect', function ()
 			{
    	 		self.qims.service("ALTextToSpeech")
-   	 			.done(function (tts) 
+   	 			.done(function (tts)
    	 			{
    	 	        	tts.say("接続、成功しました");
    	 	       });
@@ -58,7 +61,7 @@ function connect(){
      	       		$(".connectedState > .connected > .glyphicon").removeClass("glyphicon-remove");
      	       		$(".connectedState > .connected > .glyphicon").addClass("glyphicon-signal");
      	       		$(".connectedState > .connected").css("color","Blue");
-     	       		
+
 
      	       })
      	// 接続失敗したら
@@ -88,7 +91,7 @@ function changeAudioVolume(){
 function hello(){
 	console.log("hello");
 	this.alAnimatedSpeech.say("はろー");
-	
+
 }
 
 // おしゃべり
@@ -114,7 +117,7 @@ function move(to){
 			case 0:
 				self.alMotion.moveTo(0, 0, 0.5).fail(function(err){console.log(err);});
 				break;
-			
+
 			case 1:
 				self.alMotion.moveTo(0, 0, -0.5).fail(function(err){console.log(err);});
 				break;
@@ -122,14 +125,14 @@ function move(to){
 			case 2:
 				self.alMotion.moveTo(0.3, 0, 0).fail(function(err){console.log(err);});
 				break;
-			
+
 			case 3:
 				self.alMotion.moveTo(-0.3, 0, 0).fail(function(err){console.log(err);});
 				break;
 			case 4:
 				self.alMotion.moveTo(0, 0, 0).fail(function(err){console.log(err);});
 				break;
-				
+
 		}
 	}
 }
@@ -167,18 +170,18 @@ function action(num){
 		case 9:
 			self.alBehavior.runBehavior("animations/Stand/Gestures/Angry_1");
 			break;
-			
+
 	}
 }
 
 function autonomousSwitch(bl){
 	var status;
-	if (bl) 
+	if (bl)
 	{
 		console.log("ON");
 		self.alAutonomousLife.getState().done(function(val){console.log(val)});
 		self.alAutonomousLife.setState("solitary");
-		
+
 	}else
 	{
 		console.log("OFF");
@@ -189,11 +192,11 @@ function autonomousSwitch(bl){
 
 function sleepSwitch(bl){
 	var status;
-	if (bl) 
+	if (bl)
 	{
 		console.log("ON");
 		self.alMotion.wakeUp();
-		
+
 	}else
 	{
 		console.log("OFF");
@@ -209,7 +212,7 @@ function qimessagingMemoryEvent(){
 
 function qimessagingMemorySubscribe(){
 	console.log("subscriber!");
-	self.alMemory.subscriber("PepperQiMessaging/Reco").done(function(subscriber) 
+	self.alMemory.subscriber("PepperQiMessaging/Reco").done(function(subscriber)
 		{
             subscriber.signal.connect(toTabletHandler);
         }
