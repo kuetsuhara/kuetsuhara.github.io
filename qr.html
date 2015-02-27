@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>basic example</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script type="text/javascript" src="libs/qimessaging/1.0/qimessaging.js"></script>
+<script type="text/javascript" src="libs/qimessaging/1.0/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/control.js"></script>
+
+<script type="text/javascript" src="js/qrcode/jquery.qrcode.js"></script>
+<script type="text/javascript" src="js/qrcode/qrcode.js"></script>
+
+
+
+</head>
+<body>
+
+	<p>Render in table</p>
+	<div id="qrcodeTable"></div>
+	<p>Render in canvas</p>
+	<div id="qrcodeCanvas"></div>
+
+
+	<script src="js/bootstrap.min.js"></script>
+
+	<script>
+		//jQuery('#qrcode').qrcode("this plugin is great");
+		jQuery('#qrcodeTable').qrcode({
+			render	: "table",
+			text	: "http://jetienne.com"
+		});
+		jQuery('#qrcodeCanvas').qrcode({
+			text	: "http://jetienne.com"
+		});
+	</script>
+
+
+
+</body>
+</html>
