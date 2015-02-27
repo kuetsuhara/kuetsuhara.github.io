@@ -1,7 +1,25 @@
 var self = this;
 
 
+function qrCreate(){
 
+	var ipAddress = $('#socketServerIP').val();
+	var portNumber = $('#socketServerPort').val()
+
+	var jsonText = 	'{"ip":"' +
+									ipAddress +
+									'","port":' +
+									portNumber +
+									'}'
+	console.log(jsonText)
+
+
+
+	$('#qrcodeCanvas').qrcode({
+		text	: jsonText
+	});
+
+}
 
 function connect(){
 	// 入力されたpepperのIPアドレスを取得
