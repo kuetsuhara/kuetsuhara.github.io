@@ -18,7 +18,6 @@ function qrCreate(){
 	$('#qrcodeCanvas').qrcode({
 		text	: jsonText
 	});
-
 }
 
 function connect(){
@@ -54,10 +53,6 @@ function connect(){
     		// メモリ監視
     		qimessagingMemorySubscribe();
         });
-
-
-
-
     }
 
 	// pepperへの接続を開始する
