@@ -21,9 +21,7 @@
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/starter-template.css" rel="stylesheet">
-
-
-
+<link href="css/main.css" rel="stylesheet">
 
 </head>
 
@@ -124,11 +122,21 @@
 
 	<h3>動かす</h3>
 	<div class = "row">
-		<div class="col-xs-6" ><button onclick="move(0)" class="btn btn-warning">←回転</button></div>
-		<div class="col-xs-6" ><button onclick="move(1)" class="btn btn-warning">→回転</button></div>
-		<hr />
-		<div class="col-xs-6" ><button onclick="move(2)" class="btn btn-info">前進</button></div>
-		<div class="col-xs-6" ><button onclick="move(3)" class="btn btn-info">後退</button></div>
+    <div class="pad">
+      <div class="control top" onclick="move(2)">
+        <div class="arrow"></div>
+      </div>
+      <div class="control left" onclick="move(0)">
+        <div class="arrow"></div>
+      </div>
+      <div class="control right" onclick="move(1)">
+        <div class="arrow"></div>
+      </div>
+      <div class="control bottom" onclick="move(3)">
+        <div class="arrow"></div>
+      </div>
+      <div class="control middle"></div>
+    </div>
 	</div>
 	<h3>ビヘイビア</h3>
 	<div class = "row">
